@@ -9,6 +9,7 @@ Flask = "~=2.0"
 [dev-packages]
 pylint = "*"
 pytest = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.9"

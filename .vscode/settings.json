@@ -1,4 +1,6 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.autoComplete.extraPaths": ["./app"],
+    "python.defaultInterpreterPath": "/Users/jonwehner/.local/share/virtualenvs/points-challenge-OB6OevgT"
 }
