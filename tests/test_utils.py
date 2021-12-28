@@ -2,7 +2,6 @@
 Module for testing utility functions
 """
 from datetime import datetime
-import pytest
 from app.utils import convert_datestring
 
 TEST_DATE = "2020-11-02T14:00:00Z"

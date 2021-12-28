@@ -1,8 +1,7 @@
 """
 Module for testing the user class
 """
-import pytest
-from app import User
+from app.models import User
 
 transaction_1 = { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }
 transaction_2 = { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }
