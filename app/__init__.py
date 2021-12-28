@@ -1,25 +1,33 @@
 """
 Entry file for the points flask application
 """
-from flask import Flask
 from datetime import date
+from flask import Flask
 
 app = Flask(__name__)
 
 class User:
+    """
+    User class that tracks transactions list and balances dictionary.
+    """
     def __init__(self):
         self.transactions = []
         self.balances = {}
-    
+
     def add_transaction(self, payer, points, timestamp):
+        """
+        Public method for adding a transaction to the user's account. 
+        Takes payer, points, timestamp as parameters.
+        Inserts into the transaction list by ascending date order.
+        """
         new_transaction = { "payer": payer, "points": points, "timestamp": timestamp }
-        if self.transactions.length == 0:
+        if len(self.transactions) == 0:
             self.transactions.append()
         else:
             index = 0
-            while index < self.transactions.length:
+            while index < len(self.transactions):
                 current_transaction = self.transactions[index]
-                if new_transaction.timestamp < current_transaction.timestamp:
+                if new_transaction["timestamp"] < current_transaction["timestamp"]:
                     self.transactions.insert(index, new_transaction)
                     break
                 index += 1
