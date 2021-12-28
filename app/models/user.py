@@ -17,8 +17,8 @@ class User:
         Takes payer, points, timestamp as parameters.
         Inserts into the transaction list by ascending date order.
         """
-        new_transaction = { "payer": payer, "points": points, "timestamp": timestamp}
-        new_transaction_time = convert_datestring(new_transaction["timestamp"])
+        new_transaction = { 'payer': payer, 'points': points, 'timestamp': timestamp}
+        new_transaction_time = convert_datestring(new_transaction['timestamp'])
 
         if len(self.transactions) == 0:
             self.transactions.append(new_transaction)
@@ -26,7 +26,7 @@ class User:
             index = 0
             while index < len(self.transactions):
                 current_transaction = self.transactions[index]
-                current_transaction_time = convert_datestring(current_transaction["timestamp"])
+                current_transaction_time = convert_datestring(current_transaction['timestamp'])
 
                 if new_transaction_time < current_transaction_time:
                     self.transactions.insert(index, new_transaction)
@@ -34,7 +34,7 @@ class User:
                 index += 1
             self.transactions.append(new_transaction)
         self._update_balance(payer, points)
-        return 'Transaction Successful'
+        return { 'Message' : 'Transaction Successful'}
 
     def _update_balance(self, payer, points):
         if payer in self.balances:
