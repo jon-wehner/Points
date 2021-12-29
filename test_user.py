@@ -29,7 +29,7 @@ def test_transaction_order(test_user):
     """
     Tests that the add_transaction method correctly updates transaction list
     """
-    assert test_user.transactions[1] == transaction_5
+    assert test_user.transactions == [transaction_2, transaction_5, transaction_3, transaction_4, transaction_1]
 
 def test_balance(test_user):
     assert test_user.balances["DANNON"] == 1100
