@@ -2,11 +2,14 @@
 Module for testing the application routes
 """
 import pytest
-from flask import json, jsonify
+from flask import json
 from app import app
 
 @pytest.fixture
 def client():
+    """
+    Sets up test client
+    """
     app.config['TESTING'] = True
     with app.test_client() as client:
         with app.app_context():
@@ -19,4 +22,3 @@ def test_successful_transaction(client):
     response = client.post('/transaction', json=good_transaction)
     data = json.loads(response.data)
     assert data['Message']== 'Transaction Successful'
-    
