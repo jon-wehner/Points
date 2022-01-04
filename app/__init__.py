@@ -23,3 +23,16 @@ def transaction():
     result = user.add_transaction(payer, points, timestamp)
 
     return jsonify(result)
+@app.route('/spend', methods=['POST'])
+def spend():
+    """
+    Accepts json string with a points value.
+    Calls spend method on the current user.
+    Returns amount of points spent or any errors. 
+    """
+    json = request.get_json()
+    points = json['points']
+
+    result = user.spend_points(points)
+
+    return jsonify(result)

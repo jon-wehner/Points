@@ -12,6 +12,9 @@ transaction_5 = { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T1
 
 @pytest.fixture
 def test_user():
+    """
+    Test fixture to provide test user data to each test
+    """
     user = User()
     user.add_transaction(transaction_1["payer"],
         int(transaction_1["points"]), transaction_1["timestamp"])
@@ -29,12 +32,16 @@ def test_transaction_order(test_user):
     """
     Tests that the add_transaction method correctly updates transaction list
     """
-    assert test_user.transactions == [transaction_2, transaction_5, transaction_3, transaction_4, transaction_1]
+    assert test_user.transactions == [transaction_2, transaction_5, transaction_3, transaction_4, 
+        transaction_1]
 
 def test_balance(test_user):
     assert test_user.balances["DANNON"] == 1100
 
 def test_spend(test_user, points=5000):
+    """
+    Tests that the spend route returns the correct spend amounts for each payer
+    """
     result = test_user.spend_points(points)
     assert result == [
         { "payer": "DANNON", "points": -100 },
@@ -43,6 +50,9 @@ def test_spend(test_user, points=5000):
     ]
 
 def test_spend_to_zero(test_user, points=500000):
+    """
+    Tests to see if the spend method will let payer points become negative
+    """
     result = test_user.spend_points(points)
     assert result == [
         { "payer": "DANNON", "points": -1100 },

@@ -38,19 +38,22 @@ class User:
         return { 'Message' : 'Transaction Successful'}
 
     def spend_points(self, points):
+        """
+        Method for spending points balance
+        """
         balances = self.balances
         result = {}
         remaining_points = points
-        while remaining_points > 0 and len(self.transactions) != 0:
+        while remaining_points > 0 and len(self.transactions) > 0:
             payment = self.transactions[0]
             points_to_spend = payment['points']
             payer = payment['payer']
             payer_balance = balances[payer]
             spent = 0
             if points_to_spend <= remaining_points and payer_balance >= points_to_spend:
-                self.transactions.pop(0)
                 remaining_points -= points_to_spend
                 spent -= points_to_spend
+                self.transactions.pop(0)
             elif points_to_spend <= remaining_points and payer_balance <= points_to_spend:
                 remaining_points -= payer_balance
                 spent -= payer_balance
@@ -58,7 +61,7 @@ class User:
             elif points_to_spend < 0:
                 spent -= points_to_spend
                 self.transactions.pop(0)
-            else:                
+            else:
                 spent -= remaining_points
                 payment['points'] -= remaining_points
                 remaining_points = 0
@@ -66,7 +69,7 @@ class User:
                 result[payer] += spent
             else:
                 result[payer] = spent
-            balances[payer] += spent       
+            balances[payer] += spent
         return [{'payer': key, 'points': result[key]} for key in result]
 
     def _update_balance(self, payer, points):
