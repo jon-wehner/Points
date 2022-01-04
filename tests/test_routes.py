@@ -44,7 +44,20 @@ def test_spend(client, post_transactions):
     """
     response = client.post('/spend', json={'points' : 5000})
     data = json.loads(response.data)
+    dannon = data[0]
     unilever = data[1]
     miller_coors = data[2]
+    assert dannon['points'] == -100
     assert unilever['points'] == -200
     assert miller_coors['points'] == -4700
+
+def test_balances(client):
+    """
+    test app's route to check user balances
+    """
+    response = client.get('/balances')
+    data = json.loads(response.data)
+    assert data['DANNON'] == 2000
+    assert data['UNILEVER'] == 0
+    assert data['MILLER COORS'] == 5300
+

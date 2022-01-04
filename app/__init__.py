@@ -36,3 +36,9 @@ def spend():
     result = user.spend_points(points)
 
     return jsonify(result)
+@app.route('/balances')
+def balances():
+    """
+    Accepts get requests and returns user balances
+    """    
+    return jsonify(user.balances)
