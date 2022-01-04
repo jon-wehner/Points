@@ -87,3 +87,8 @@ This route returns a JSON array with objects for every payer that had points spe
 ```
 Payer will be a string value with the payer name
 Points is an integer value for the points spent from that payer balance.
+
+## Documentation Sources Used
+1. Python Docs: https://docs.python.org/3.9/
+2. Flask Docs: https://flask.palletsprojects.com/en/2.0.x/
+3. Pytest Docs: https://docs.pytest.org/en/6.2.x/contents.html
