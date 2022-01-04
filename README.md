@@ -6,7 +6,6 @@ A web service that accepts HTTP requests to keep track of user balances.
 2. Clone the repo
   ```
   git clone https://github.com/jon-wehner/Points.git
-
   ```
 3. Install dependencies
   ```
