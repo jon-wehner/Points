@@ -60,4 +60,13 @@ Post requests to this route accept JSON with the following format:
 ```
 {"points": points}
 ```
-Points is an integer value. 
+Points is an integer value representing total points to spend.
+
+This route returns a JSON array with objects for every payer that had points spent and the amount of points spent. The JSON will have the following format:
+```
+[
+{"payer": payer, "points: points}
+]
+```
+Payer will be a string value with the payer name
+Points is an integer value for the points spent from that payer balance.
