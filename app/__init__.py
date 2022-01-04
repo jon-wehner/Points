@@ -16,6 +16,7 @@ def transaction():
     Returns success message or any errors.
     """
     json = request.get_json()
+    print('-------------------------------', json)
     payer = json['payer']
     points = json['points']
     timestamp = json['timestamp']
