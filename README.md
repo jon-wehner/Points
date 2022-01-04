@@ -2,8 +2,10 @@
 A web service that accepts HTTP requests to keep track of user balances.
 
 ## Installation (Running the service)
-1. Ensure python 3.6 or newer is installed on your system. 
-2. Clone the repo
+This is the most basic method for installing the project dependencies and running the service. You may wish to run the application in an isolated environment. In that case, you should follow the development installation instructions. 
+1. Ensure python 3.6 or newer is installed on your system.
+- For assistance installing python on your operating system please see: https://wiki.python.org/moin/BeginnersGuide/Download
+3. Clone the repo
   ```
   git clone https://github.com/jon-wehner/Points.git
   ```
@@ -15,10 +17,18 @@ A web service that accepts HTTP requests to keep track of user balances.
   ```
   flask run
   ```
+5. Make requests to the app.
+- Use any application that allows you to make http requests containing JSON to use the application. JSON formatting is provided in the API routes section to assist you when formatting your requests.
+- An example transaction request using cURL:
+```
+curl -X POST 127.0.0.1:5000/transaction -H 'Content-Type: application/json' -d '{"payer":"DANNON", "points":"5000","timestamp":"2020-11-02T14:00:00Z"}'
+```
 ## Installation (Development)
 Instruction may vary depending on virtual environment solution, this project was developed with pipenv. 
-1. Ensure python 3.9 is installed on your system
-2. 2. Clone the repo
+1. Ensure python 3.9 and pipenv are installed on your system
+- For assistance installing python on your operating system please see: https://wiki.python.org/moin/BeginnersGuide/Download
+- For assistance installing pipenv please see: https://pipenv.pypa.io/en/latest/install/#installing-pipenv
+3. Clone the repo
   ```
   git clone https://github.com/jon-wehner/Points.git
 
@@ -31,6 +41,13 @@ Instruction may vary depending on virtual environment solution, this project was
   ```
   flask run
   ```
+- The service will run at 127.0.0.1:5000
+5. Make requests to the app.
+- Use any application that allows you to make http requests containing JSON to use the application. JSON formatting is provided in the API routes section to assist you when formatting your requests.
+- An example transaction request using cURL:
+```
+curl -X POST 127.0.0.1:5000/transaction -H 'Content-Type: application/json' -d '{"payer":"DANNON", "points":5000,"timestamp":"2020-11-02T14:00:00Z"}'
+```
 ## API Routes
 ### GET /balances
 Get requests to this route will return JSON containing all of the user balances with the following format:
@@ -65,7 +82,7 @@ Points is an integer value representing total points to spend.
 This route returns a JSON array with objects for every payer that had points spent and the amount of points spent. The JSON will have the following format:
 ```
 [
-{"payer": payer, "points: points}
+{"payer": payer, "points": points}
 ]
 ```
 Payer will be a string value with the payer name
